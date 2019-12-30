@@ -44,6 +44,14 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DTOClasses\DormitoryDTO.cs" />
     <Compile Include="DTOClasses\RoomDTO.cs" />
+    <Compile Include="Interfaces\ActionChanged.cs" />
+    <Compile Include="Interfaces\ChangedDormitoriesHandler.cs" />
+    <Compile Include="Interfaces\ChangedRoomsHandler.cs" />
+    <Compile Include="Interfaces\IDormitories.cs" />
+    <Compile Include="Interfaces\IRooms.cs" />
+    <Compile Include="Interfaces\IStDorModel.cs" />
+    <Compile Include="Interfaces\StDorModelException.cs" />
+    <Compile Include="Interfaces\StDorModelExceptionEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
