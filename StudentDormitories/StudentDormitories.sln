@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentDormitories", "Stude
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StDorModel", "StDorModel\StDorModel.csproj", "{52E55F6D-CDFB-47ED-A2E9-28ACC53F9C3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommLibrary", "CommLibrary\CommLibrary.csproj", "{70531673-6A48-408B-BDE2-8C82E04F20DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{52E55F6D-CDFB-47ED-A2E9-28ACC53F9C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52E55F6D-CDFB-47ED-A2E9-28ACC53F9C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52E55F6D-CDFB-47ED-A2E9-28ACC53F9C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70531673-6A48-408B-BDE2-8C82E04F20DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70531673-6A48-408B-BDE2-8C82E04F20DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70531673-6A48-408B-BDE2-8C82E04F20DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70531673-6A48-408B-BDE2-8C82E04F20DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
