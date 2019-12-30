@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace StDorModel.XMLClases
+namespace StDorModel.XMLClasses
 {
     /// <summary>Класс для десериализации из XML одного Обшежития</summary>
     [Serializable()]

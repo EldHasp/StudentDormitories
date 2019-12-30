@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace StDorModel.XMLClases
+namespace StDorModel.XMLClasses
 {
 
     /// <summary>Root Класс для десериализации XML с данными</summary>

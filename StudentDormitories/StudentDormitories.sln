@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StDorModel", "StDorModel\St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommLibrary", "CommLibrary\CommLibrary.csproj", "{70531673-6A48-408B-BDE2-8C82E04F20DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StDorModelLibrary", "StDorModelLibrary\StDorModelLibrary.csproj", "{CCFDCFE6-07B0-48D1-B67B-3008D68299D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{70531673-6A48-408B-BDE2-8C82E04F20DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70531673-6A48-408B-BDE2-8C82E04F20DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70531673-6A48-408B-BDE2-8C82E04F20DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCFDCFE6-07B0-48D1-B67B-3008D68299D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCFDCFE6-07B0-48D1-B67B-3008D68299D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCFDCFE6-07B0-48D1-B67B-3008D68299D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCFDCFE6-07B0-48D1-B67B-3008D68299D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

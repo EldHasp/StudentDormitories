@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XMLClases\DormitoryXML.cs" />
-    <Compile Include="XMLClases\RoomXML.cs" />
-    <Compile Include="XMLClases\StudentDormitoriesXML.cs" />
+    <Compile Include="XMLClasses\DormitoryXML.cs" />
+    <Compile Include="XMLClasses\RoomXML.cs" />
+    <Compile Include="XMLClasses\StudentDormitoriesXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dataStDor.xml" />

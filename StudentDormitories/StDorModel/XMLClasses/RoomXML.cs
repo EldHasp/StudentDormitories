@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace StDorModel.XMLClases
+namespace StDorModel.XMLClasses
 {
     /// <summary>Класс для десериализации из XML одной Комнаты</summary>
     [Serializable()]
@@ -14,10 +14,10 @@ namespace StDorModel.XMLClases
 
         /// <summary>ID общежития</summary>
         [XmlAttribute()]
-        public byte DormitoryID { get; set; }
+        public int DormitoryID { get; set; }
 
         /// <summary>Номер комнаты</summary>
         [XmlAttribute()]
-        public ushort Number { get; set; }
+        public int Number { get; set; }
     }
 }
