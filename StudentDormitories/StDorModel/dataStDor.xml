@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StudentDormitories>
+  <Dormitories>
+    <Dormitory ID="1" Title="Первое" Address="ул. Ленина 1"/>
+    <Dormitory ID="2" Title="Старое" Address="ул. Ленина 1а"/>
+    <Dormitory ID="12" Title="Новое" Address="ул. Панфилова 40"/>
+  </Dormitories>
+  <Rooms>
+    <Room ID="1" DormitoryID="1" Number="101"/>
+    <Room ID="2" DormitoryID="1" Number="201"/>
+    <Room ID="3" DormitoryID="1" Number="206"/>
+    <Room ID="10" DormitoryID="2" Number="101"/>
+    <Room ID="20" DormitoryID="2" Number="201"/>
+    <Room ID="30" DormitoryID="2" Number="206"/>
+    <Room ID="11" DormitoryID="12" Number="666"/>
+    <Room ID="12" DormitoryID="12" Number="999"/>
+    <Room ID="13" DormitoryID="12" Number="555"/>
+    <Room ID="110" DormitoryID="12" Number="111"/>
+    <Room ID="120" DormitoryID="12" Number="444"/>
+    <Room ID="130" DormitoryID="12" Number="001"/>
+  </Rooms>
+</StudentDormitories>
