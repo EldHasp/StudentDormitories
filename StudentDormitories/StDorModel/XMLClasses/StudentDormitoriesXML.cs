@@ -5,12 +5,11 @@ using System.Xml.Serialization;
 
 namespace StDorModel.XMLClasses
 {
-
     /// <summary>Root Класс для десериализации XML с данными</summary>
     [Serializable()]
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
-    [XmlRoot(Namespace = "", IsNullable = false)]
+    [XmlRoot(IsNullable = false, ElementName ="StudentDormitories")]
     public class StudentDormitoriesXML
     {
 
@@ -22,6 +21,4 @@ namespace StDorModel.XMLClasses
         [XmlArrayItem("Room", IsNullable = false)]
         public HashSet<RoomXML> Rooms { get; set; }
     }
-
-
 }

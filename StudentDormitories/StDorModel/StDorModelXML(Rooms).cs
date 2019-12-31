@@ -18,6 +18,9 @@ namespace StDorModel
 
         protected override void AddRoom(RoomDTO room)
         {
+            if (!dormitoriesXML.ContainsKey(room.DormitoryID))
+                throw new StDorModelException($"Не найдено общежитие с ID={room.DormitoryID}", StDorModelExceptionEnum.NoSuchID);
+
             RoomXML roomXML = CreateRoomXML(room);
             roomXML.ID = BaseId.NewId(studentDormitories.Rooms);
 
@@ -60,7 +63,7 @@ namespace StDorModel
             roomsXML.Remove(roomXML.ID);
             Save();
 
-            roomsDTO.Remove(room);
+           var res = roomsDTO.Remove(room);
 
             OnRemoveRoomsEvent(ImmutableHashSet<RoomDTO>.Empty.Add(room));
         }
