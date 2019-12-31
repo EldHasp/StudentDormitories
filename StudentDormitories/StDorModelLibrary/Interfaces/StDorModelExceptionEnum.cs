@@ -10,6 +10,8 @@
         /// <summary>Такой ID отсутствуют</summary>
         NoSuchID,
         /// <summary>Не совпадают значения</summary>
-        DoNotMatch
+        DoNotMatch,
+        /// <summary>Ошибка загрузки данных</summary>
+        ErrorLoadingData
     }
 }
