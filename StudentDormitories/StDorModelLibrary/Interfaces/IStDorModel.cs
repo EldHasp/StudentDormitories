@@ -1,6 +1,4 @@
-﻿using StDorModelLibrary.DTOClasses;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace StDorModelLibrary.Interfaces
@@ -19,6 +17,8 @@ namespace StDorModelLibrary.Interfaces
 
         /// <summary>Данные загружены</summary>
         bool IsLoaded { get; }
-    }
 
+        /// <param name="source">Источник данных</param>
+        string Source { get; }
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using StDorModelLibrary.DTOClasses;
 using StDorModelLibrary.Interfaces;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
 
 namespace StDorModelLibrary
@@ -17,24 +18,24 @@ namespace StDorModelLibrary
         public event ChangedDormitoriesHandler ChangedDormitoriesEvent;
         /// <summary>Вспомогательный метод вызова события после удаления общежития</summary>
         /// <param name="dormitories">Удалённое общежитие</param>
-        protected void OnRemoveDormitoriesEvent(HashSet<DormitoryDTO> dormitories) => ChangedDormitoriesEvent?.Invoke(this, ActionChanged.Remove, dormitories);
+        protected void OnRemoveDormitoriesEvent(ImmutableHashSet<DormitoryDTO> dormitories) => ChangedDormitoriesEvent?.Invoke(this, ActionChanged.Remove, dormitories);
         /// <summary>Вспомогательный метод вызова события после добавления общежития</summary>
         /// <param name="dormitories">Добавленное общежитие</param>
-        protected void OnAddDormitoriesEvent(HashSet<DormitoryDTO> dormitories) => ChangedDormitoriesEvent?.Invoke(this, ActionChanged.Add, dormitories);
+        protected void OnAddDormitoriesEvent(ImmutableHashSet<DormitoryDTO> dormitories) => ChangedDormitoriesEvent?.Invoke(this, ActionChanged.Add, dormitories);
         /// <summary>Вспомогательный метод вызова события после изменения общежития</summary>
         /// <param name="dormitories">Изменённое общежитие</param>
-        protected void OnChangedDormitoriesEvent(HashSet<DormitoryDTO> dormitories) => ChangedDormitoriesEvent?.Invoke(this, ActionChanged.Changed, dormitories);
+        protected void OnChangedDormitoriesEvent(ImmutableHashSet<DormitoryDTO> dormitories) => ChangedDormitoriesEvent?.Invoke(this, ActionChanged.Changed, dormitories);
 
         public event ChangedRoomsHandler ChangedRoomsEvent;
         /// <summary>Вспомогательный метод вызова события после удаления комнаты</summary>
         /// <param name="dormitories">Удалённая комната</param>
-        protected void OnRemoveRoomsEvent(HashSet<RoomDTO> rooms) => ChangedRoomsEvent?.Invoke(this, ActionChanged.Remove, rooms);
+        protected void OnRemoveRoomsEvent(ImmutableHashSet<RoomDTO> rooms) => ChangedRoomsEvent?.Invoke(this, ActionChanged.Remove, rooms);
         /// <summary>Вспомогательный метод вызова события после добавления комнаты</summary>
         /// <param name="dormitories">Добавленная комната</param>
-        protected void OnAddRoomsEvent(HashSet<RoomDTO> rooms) => ChangedRoomsEvent?.Invoke(this, ActionChanged.Add, rooms);
+        protected void OnAddRoomsEvent(ImmutableHashSet<RoomDTO> rooms) => ChangedRoomsEvent?.Invoke(this, ActionChanged.Add, rooms);
         /// <summary>Вспомогательный метод вызова события после изменения комнаты</summary>
         /// <param name="dormitories">Изменённая комната</param>
-        protected void OnChangedRoomsEvent(HashSet<RoomDTO> rooms) => ChangedRoomsEvent?.Invoke(this, ActionChanged.Changed, rooms);
+        protected void OnChangedRoomsEvent(ImmutableHashSet<RoomDTO> rooms) => ChangedRoomsEvent?.Invoke(this, ActionChanged.Changed, rooms);
 
         public Task AddDormitoryAsync(DormitoryDTO dormitory) => Task.Factory.StartNew(() => AddDormitory(dormitory));
         /// <summary>Добавляет заданное общежитие</summary>
@@ -46,7 +47,7 @@ namespace StDorModelLibrary
         /// <summary>Добавляет заданную комнату</summary>
         /// <param name="room">Комната которую надо добавить</param>
         /// <remarks>room.ID игнорируется</remarks>
-        protected abstract Task AddRoom(RoomDTO room);
+        protected abstract void AddRoom(RoomDTO room);
 
         public Task ChangeDormitoryAsync(DormitoryDTO dormitory) => Task.Factory.StartNew(() => ChangeDormitory(dormitory));
         /// <summary>Изменяет заданное общежитие</summary>
@@ -62,30 +63,40 @@ namespace StDorModelLibrary
 
         public Task CloseAsync() => Task.Factory.StartNew(Close);
         /// <summary>Закрытие источника данных и освобождение ресурсов</summary>
-        protected virtual void Close() => Dispose();
+        protected virtual void Close()
+        {
+            Dispose();
+            Source = null;
+        }
 
         public virtual void Dispose() => IsLoaded = !(IsDisposable = true);
 
-        public Task<HashSet<DormitoryDTO>> GetDormitoriesAsync() => Task.Factory.StartNew(GetDormitories);
+        public Task<ImmutableHashSet<DormitoryDTO>> GetDormitoriesAsync() => Task.Factory.StartNew(GetDormitories);
         /// <summary>Возвращает все общежития</summary>
         /// <returns>Множество общежитий</returns>
-        protected abstract HashSet<DormitoryDTO> GetDormitories();
+        protected abstract ImmutableHashSet<DormitoryDTO> GetDormitories();
 
-        public Task<HashSet<RoomDTO>> GetRoomsAsync() => Task.Factory.StartNew(GetRooms);
+        public Task<ImmutableHashSet<RoomDTO>> GetRoomsAsync() => Task.Factory.StartNew(GetRooms);
         /// <summary>Возвращает все комнаты всех общежитий</summary>
         /// <returns>Множество комнат</returns>
-        protected abstract HashSet<RoomDTO> GetRooms();
+        protected abstract ImmutableHashSet<RoomDTO> GetRooms();
 
-        public Task<HashSet<RoomDTO>> GetRoomsAsync(DormitoryDTO dormitory) => Task.Factory.StartNew(() => GetRooms(dormitory));
+        public Task<ImmutableHashSet<RoomDTO>> GetRoomsAsync(DormitoryDTO dormitory) => Task.Factory.StartNew(() => GetRooms(dormitory));
         /// <summary>Возвращает все комнаты заданного общежития</summary>
         /// <returns>Множество комнат</returns>
-        protected abstract HashSet<RoomDTO> GetRooms(DormitoryDTO dormitory);
+        protected abstract ImmutableHashSet<RoomDTO> GetRooms(DormitoryDTO dormitory);
 
 
         public Task LoadAsync(string source) => Task.Factory.StartNew(() => Load(source));
         /// <summary>Загрузка данных</summary>
         /// <param name="source">Источник с данными</param>
-        protected virtual void Load(string source) => IsLoaded = true;
+        protected virtual void Load(string source)
+        {
+            IsLoaded = true;
+            Source = source;
+        }
+        public string Source { get; protected set; } = null;
+
 
         public Task RemoveDormitoryAsync(DormitoryDTO dormitory) => Task.Factory.StartNew(() => RemoveDormitory(dormitory));
         /// <summary>Удаляет заданное общежитие</summary>

@@ -1,5 +1,5 @@
 ﻿using StDorModelLibrary.DTOClasses;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
 
 namespace StDorModelLibrary.Interfaces
@@ -9,7 +9,7 @@ namespace StDorModelLibrary.Interfaces
     {
         /// <summary>Возвращает все общежития</summary>
         /// <returns>Множество общежитий</returns>
-        Task<HashSet<DormitoryDTO>> GetDormitoriesAsync();
+        Task<ImmutableHashSet<DormitoryDTO>> GetDormitoriesAsync();
 
         /// <summary>Удаляет заданное общежитие</summary>
         /// <param name="dormitory">Общежитие которое надо удалить</param>

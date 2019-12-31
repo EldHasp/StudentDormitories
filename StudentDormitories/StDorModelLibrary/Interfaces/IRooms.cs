@@ -1,5 +1,5 @@
 ﻿using StDorModelLibrary.DTOClasses;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
 
 namespace StDorModelLibrary.Interfaces
@@ -9,12 +9,12 @@ namespace StDorModelLibrary.Interfaces
     {
         /// <summary>Возвращает все комнаты всех общежитий</summary>
         /// <returns>Множество комнат</returns>
-        Task<HashSet<RoomDTO>> GetRoomsAsync();
+        Task<ImmutableHashSet<RoomDTO>> GetRoomsAsync();
 
         /// <summary>Возвращает все комнаты заданного общежития</summary>
         /// <returns>Множество комнат</returns>
         /// <exception cref="StDorModelException">Возникает когда нет общежития с таким ID или когда его данные отличны</exception>
-        Task<HashSet<RoomDTO>> GetRoomsAsync(DormitoryDTO dormitory);
+        Task<ImmutableHashSet<RoomDTO>> GetRoomsAsync(DormitoryDTO dormitory);
 
         /// <summary>Удаляет заданную комнату</summary>
         /// <param name="room"></param>

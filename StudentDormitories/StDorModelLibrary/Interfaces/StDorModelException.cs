@@ -6,7 +6,7 @@ namespace StDorModelLibrary.Interfaces
     public class StDorModelException : Exception
     {
         /// <summary>Свойство со значением ошибки</summary>
-        public StDorModelExceptionEnum ValueException { get; }
+        public StDorModelExceptionEnum ValueException { get; } = StDorModelExceptionEnum.Default;
 
         #region Конструкторы
         public StDorModelException(string message)
@@ -15,6 +15,14 @@ namespace StDorModelLibrary.Interfaces
             => ValueException = valueException;
         public StDorModelException(string message, StDorModelExceptionEnum valueException)
             : base(message)
+            => ValueException = valueException;
+        public StDorModelException(string message, Exception innerException)
+            : base(message, innerException) { }
+        public StDorModelException(StDorModelExceptionEnum valueException, Exception innerException)
+            : base(null, innerException)
+            => ValueException = valueException;
+        public StDorModelException(string message, StDorModelExceptionEnum valueException, Exception innerException)
+            : base(message, innerException)
             => ValueException = valueException;
         #endregion
     }

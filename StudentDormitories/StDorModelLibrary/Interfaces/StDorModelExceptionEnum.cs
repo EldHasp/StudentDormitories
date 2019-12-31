@@ -12,6 +12,8 @@
         /// <summary>Не совпадают значения</summary>
         DoNotMatch,
         /// <summary>Ошибка загрузки данных</summary>
-        ErrorLoadingData
+        LoadingData,
+        /// <summary>Ошибка сохранения данных</summary>
+        SaveData
     }
 }
