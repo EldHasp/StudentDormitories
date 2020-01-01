@@ -6,10 +6,10 @@ namespace StDorModelLibrary.DTOClasses
     public class RoomDTO : BaseIdDTO
     {
         /// <summary>ID общежития</summary>
-        public int DormitoryID { get; set; }
+        public int DormitoryID { get; }
 
         /// <summary>Номер комнаты</summary>
-        public int Number { get; set; }
+        public int Number { get;}
 
         /// <summary>Конструктор задающий значения свойствам</summary>
         /// <param name="id">ID экземпляра Комнаты</param>

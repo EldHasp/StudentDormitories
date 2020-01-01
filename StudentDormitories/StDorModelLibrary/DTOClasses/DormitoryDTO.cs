@@ -7,10 +7,10 @@ namespace StDorModelLibrary.DTOClasses
     {
 
         /// <summary>Название общежития</summary>
-        public string Title { get; set; }
+        public string Title {get;}
 
         /// <summary>Адрес общежития</summary>
-        public string Address { get; set; }
+        public string Address {get;}
 
         /// <summary>Конструктор задающий значения</summary>
         /// <param name="id">ID экземпляра</param>

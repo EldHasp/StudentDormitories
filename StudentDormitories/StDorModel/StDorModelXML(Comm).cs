@@ -15,7 +15,7 @@ namespace StDorModel
     public partial class StDorModelXML : StDorModelBase
     {
         /// <summary>Возвращает тип и значения свойств IsDisposable, IsLoaded, Source</summary>
-        /// <returns>string со строковым предствалением</returns>
+        /// <returns>string со строковым представлением</returns>
         public override string ToString()
             => $"{this.GetType().FullName} : {{IsDisposable : {IsDisposable}, IsLoaded : {IsLoaded}, Source : {(Source == null ? "null" : '"' + Source + '"')}}}";
 
@@ -50,7 +50,7 @@ namespace StDorModel
         /// <summary>Сравнивает все значения двух экземпляров</summary>
         /// <param name="source">Экземпляр DTO типа</param>
         /// <param name="target">Экземпляр XML типа</param>
-        /// <returns><see langword="true"/> если все значени равны</returns>
+        /// <returns><see langword="true"/> если все значения равны</returns>
         protected static bool EqualsDormitory(DormitoryDTO source, DormitoryXML target)
             => target.ID == source.ID && target.Title == source.Title && target.Address == source.Address;
 
@@ -72,10 +72,9 @@ namespace StDorModel
         /// <summary>Сравнивает все значения двух экземпляров</summary>
         /// <param name="source">Экземпляр DTO типа</param>
         /// <param name="target">Экземпляр XML типа</param>
-        /// <returns><see langword="true"/> если все значени равны</returns>
+        /// <returns><see langword="true"/> если все значения равны</returns>
         protected static bool EqualsRoom(RoomDTO source, RoomXML target)
             => target.ID == source.ID && target.DormitoryID == source.DormitoryID && target.Number == source.Number;
-
 
         protected override void Load(string source)
         {
@@ -100,10 +99,14 @@ namespace StDorModel
             }
         }
 
+        /// <summary>Метод сохраняющий данные в исходном XML файле</summary>
         protected void Save()
         {
             try
             {
+                if (File.Exists(Source))
+                    File.Move(Source, Path.Combine(Path.GetFullPath(Source), Path.GetFileNameWithoutExtension(Source) + "(" + DateTime.Now + ")" + Path.GetExtension(Source)));
+
                 using (var file = File.Create(Source))
                      serializer.Serialize(file, studentDormitories);
             }

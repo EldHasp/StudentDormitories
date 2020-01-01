@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StDorModelLibrary", "StDorM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDebug", "ConsoleDebug\ConsoleDebug.csproj", "{AA4DF876-1F2F-4D72-AF04-23F74DFC8DE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StDorVMLibrary", "StDorVMLibrary\StDorVMLibrary.csproj", "{D7978D8E-67D3-4A0C-A458-9591B4533C34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AA4DF876-1F2F-4D72-AF04-23F74DFC8DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA4DF876-1F2F-4D72-AF04-23F74DFC8DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA4DF876-1F2F-4D72-AF04-23F74DFC8DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7978D8E-67D3-4A0C-A458-9591B4533C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7978D8E-67D3-4A0C-A458-9591B4533C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7978D8E-67D3-4A0C-A458-9591B4533C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7978D8E-67D3-4A0C-A458-9591B4533C34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
