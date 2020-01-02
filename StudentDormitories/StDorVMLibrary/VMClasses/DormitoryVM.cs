@@ -3,7 +3,7 @@ using StDorModelLibrary.DTOClasses;
 
 namespace StDorVMLibrary.VMClasses
 {
-    /// <summary>Класс VM для обещитий работающий с DTO типом DormitoryDTO</summary>
+    /// <summary>Класс VM для общежитий работающий с DTO типом DormitoryDTO</summary>
     public class DormitoryVM : BaseIdVM<DormitoryDTO>, ICopy<DormitoryVM>, IEquatableValues<DormitoryVM>
     {
 
