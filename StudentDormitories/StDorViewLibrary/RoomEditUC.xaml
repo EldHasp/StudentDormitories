@@ -9,7 +9,7 @@
     d:DesignHeight="250"
     d:DesignWidth="250"
     mc:Ignorable="d">
-    <d:UserControl.DataContext>
+    <!--<d:UserControl.DataContext>
         <dataDesign:RoomEditDD >
             <dataDesign:RoomEditDD.RoomEdit>
                 <dataDesign:RoomDD ID="22" DormitoryID="25" Number="333" />
@@ -20,16 +20,17 @@
                 <dataDesign:DormitoryDD ID="05" Title="Название 555" Address="Адрес" />
             </dataDesign:RoomEditDD.Dormitories>
         </dataDesign:RoomEditDD>
-    </d:UserControl.DataContext>
+    </d:UserControl.DataContext>-->
 
-    <Grid>
+    <Grid Margin="5">
         <Grid.Resources>
             <Style TargetType="TextBox">
-                <Setter Property="IsReadOnly" Value="{Binding IsModeDormitoryEdit}" />
+                <Setter Property="IsReadOnly" Value="True" />
                 <Setter Property="Background" Value="Transparent" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsModeDormitoryEdit}" Value="True">
+                    <DataTrigger Binding="{Binding IsModeRoomEdit}" Value="True">
                         <Setter Property="Background" Value="White" />
+                        <Setter Property="IsReadOnly" Value="False" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -44,42 +45,25 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel
-            Grid.ColumnSpan="2"
-            Margin="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Orientation="Horizontal">
-            <TextBlock TextWrapping="Wrap">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Text" Value="Выбранная комната" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsModeDormitoryEdit, Mode=OneWay}" Value="True">
-                                <Setter Property="Text" Value="Редактирование выбранной комнаты" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding IsModeDormitoryAdd}" Value="True">
-                                <Setter Property="Text" Value="Добавление новой комнаты" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <TextBlock FontWeight="Bold">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsDormitoryModify, Mode=OneWay}" Value="True">
-                                <Setter Property="Text" Value=" *" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-        </StackPanel>
+        <Grid x:Name="grid" Grid.ColumnSpan="2" Margin="5" Height="10"/>
+
+        <TextBlock TextWrapping="Wrap" MaxWidth="{Binding ActualWidth, ElementName=grid}"
+                   HorizontalAlignment="Center" TextAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="Выбранная комната" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsModeDormitoryEdit, Mode=OneWay}" Value="True">
+                            <Setter Property="Text" Value="Редактирование выбранной комнаты" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsModeDormitoryAdd}" Value="True">
+                            <Setter Property="Text" Value="Добавление новой комнаты" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <TextBlock
             Grid.Row="1"
             Margin="5"
@@ -88,22 +72,6 @@
             Grid.Row="2"
             Margin="5"
             Text="Номер :" />
-        <TextBlock
-            Grid.Row="3"
-            Margin="5"
-            Text="Общежитие комнаты" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
-        <TextBlock
-            Grid.Row="4"
-            Margin="5"
-            Text="ID :" />
-        <TextBlock
-            Grid.Row="5"
-            Margin="5"
-            Text="Название :" />
-        <TextBlock
-            Grid.Row="6"
-            Margin="5"
-            Text="Адрес :" />
         <TextBlock
             Grid.Row="1"
             Grid.Column="1"
@@ -123,52 +91,96 @@
             Grid.Row="2"
             Grid.Column="1"
             Margin="5"
-            Text="{Binding RoomEdit.Number}" />
-        <TextBlock
-            Grid.Row="4"
+            Text="{Binding RoomEdit.Number, UpdateSourceTrigger=PropertyChanged}" />
+        <Border Grid.ColumnSpan="2"
+                Grid.Row="3"
+                Margin="5"
+                BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Общежитие комнаты" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
+                <TextBlock
+            Grid.Row="1"
+            Margin="5"
+            Text="ID :" />
+                <TextBlock
+            Grid.Row="2"
+            Margin="5"
+            Text="Название :" />
+                <TextBlock
+            Grid.Row="3"
+            Margin="5"
+            Text="Адрес :" />
+                <TextBlock
+            Grid.Row="1"
             Grid.Column="1"
             Margin="5"
             Text="{Binding RoomEdit.DormitoryID}" />
-        <ComboBox x:Name="comboBox" 
-            Grid.Row="5"
+                <ComboBox x:Name="comboBox" 
+            Grid.Row="2"
             Grid.Column="1"
             Margin="5"
             ItemsSource="{Binding Dormitories}"
             SelectedValuePath="ID" 
             SelectedValue="{Binding RoomEdit.DormitoryID}"
             DisplayMemberPath="Title">
-            <ComboBox.Style>
-                <Style TargetType="ComboBox">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsModeRoomEdit}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ComboBox.Style>
-        </ComboBox>
-        <TextBlock
-            Grid.Row="5"
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsModeRoomEdit}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+                <TextBlock
+            Grid.Row="2"
             Grid.Column="1"
             Margin="5"
             Text="{Binding SelectedItem.Title, ElementName=comboBox}" >
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsModeRoomEdit}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="5"
+            Text="{Binding SelectedItem.Address, ElementName=comboBox}" />
+
+            </Grid>
+        </Border>
+        <TextBlock FontWeight="Bold" Grid.ColumnSpan="2"
+                   Grid.Row="6" Foreground="Red">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
-                    <Setter Property="Visibility" Value="Visible"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsModeRoomEdit}" Value="True">
-                            <Setter Property="Visibility" Value="Collapsed"/>
+                        <DataTrigger Binding="{Binding IsRoomModify, Mode=OneWay}" Value="True">
+                            <Setter Property="Text" Value="Внесены изменения" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBlock
-            Grid.Row="6"
-            Grid.Column="1"
-            Margin="5"
-            Text="{Binding SelectedItem.Address, ElementName=comboBox}" />
 
     </Grid>
 </UserControl>

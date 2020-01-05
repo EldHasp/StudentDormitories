@@ -13,7 +13,7 @@
     FontSize="14"
     mc:Ignorable="d"
     Background="#FFFFF4C3" BorderBrush="#FFFF8000" BorderThickness="2">
-    <d:UserControl.DataContext>
+    <!--<d:UserControl.DataContext>
         <dataDesign:RoomsDD>
             <dataDesign:RoomsDD.RoomEdit>
                 <dataDesign:RoomDD ID="22" DormitoryID="25" Number="333" />
@@ -32,7 +32,7 @@
                 <dataDesign:RoomDD ID="99" DormitoryID="25" Number="999" />
             </dataDesign:RoomsDD.Rooms>
         </dataDesign:RoomsDD>
-    </d:UserControl.DataContext>
+    </d:UserControl.DataContext>-->
 
     <Grid>
         <Grid.RowDefinitions>
@@ -90,27 +90,25 @@
                 </ListBox>
             </Grid>
         </Border>
-        <Border Grid.Row="1" Grid.Column="1" Margin="5"
-                Background="#FFFFE599" BorderBrush="#FFFF8000" BorderThickness="2">
-            <local:RoomEditUC  Margin="5"/>
-        </Border>
+        <local:RoomEditUC Grid.Row="1" Grid.Column="1" Margin="5"
+            Background="#FFFFE599" BorderBrush="#FFFF8000" BorderThickness="2"/>
         <Border Grid.Row="2" Grid.Column="1" Margin="5"
                 Background="#FFFFE599" BorderBrush="#FFFF8000" BorderThickness="2">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
-                <Button Command="{Binding DormitoryAddCommand}" Content="Добавить"  Margin="5"/>
+                <Button Command="{Binding RoomAddCommand, Mode=OneWay}" Content="Добавить"  Margin="5"/>
                 <Button Margin="5"
-                        Command="{Binding DormitoryEditCommand}"
-                        CommandParameter="{Binding DormitorySelected}"
+                        Command="{Binding RoomEditCommand, Mode=OneWay}"
+                        CommandParameter="{Binding RoomSelected}"
                         Content="Редактировать" />
                 <Button Margin="5"
-                        Command="{Binding DormitoryRemoveCommand}"
-                        CommandParameter="{Binding DormitorySelected}"
+                        Command="{Binding RoomRemoveCommand}"
+                        CommandParameter="{Binding RoomSelected}"
                         Content="Удалить" />
                 <Button Margin="5"
-                        Command="{Binding DormitorySaveCommand}"
-                        CommandParameter="{Binding DormitoryAddCommand}"
+                        Command="{Binding RoomSaveCommand}"
+                        CommandParameter="{Binding RoomEdit}"
                         Content="Сохранить" />
-                <Button Command="{Binding DormitoryCancelCommand}" Content="Отменить"  Margin="5"/>
+                <Button Command="{Binding RoomCancelCommand}" Content="Отменить"  Margin="5"/>
             </StackPanel>
         </Border>
     </Grid>

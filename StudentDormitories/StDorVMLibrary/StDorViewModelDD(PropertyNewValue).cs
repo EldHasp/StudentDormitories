@@ -1,6 +1,7 @@
 ﻿using CommLibrary;
 using StDorVMLibrary.Interfaces;
 using StDorVMLibrary.VMClasses;
+using System.ComponentModel;
 using System.Linq;
 
 namespace StDorVMLibrary
@@ -33,13 +34,19 @@ namespace StDorVMLibrary
             if (propertyName == nameof(RoomEdit) && RoomEdit != null)
                 (RoomEdit as RoomVM).PropertyChanged += Edit_PropertyChanged;
 
+            /// Отлов изменения свойств DormitorySelected, IsModeDormitoryEdit
+            if (Contains(propertyName, nameof(DormitorySelected), nameof(IsModeDormitoryEdit)) && !IsModeDormitoryEdit)
+                DormitoryEdit = DormitorySelected;
 
+            /// Отлов изменения свойств RoomSelected, IsModeRoomEdit
+            if (Contains(propertyName, nameof(RoomSelected), nameof(IsModeRoomEdit)) && !IsModeRoomEdit)
+                RoomEdit = RoomSelected;
         }
 
         /// <summary>Проверка модификации общежития или комнаты</summary>
         /// <param name="sender">Модифицируемый объект</param>
         /// <param name="e">Парамеры события</param>
-        private void Edit_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Edit_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (sender == DormitoryEdit)
                 IsDormitoryModify
@@ -51,7 +58,7 @@ namespace StDorVMLibrary
                 IsRoomModify
                     = IsModeRoomEdit
                     && Dormitories.Any(dor => dor.ID == RoomEdit.DormitoryID)
-                    && (!IsModeRoomAdd && (RoomEdit as RoomVM).EqualValues(RoomSelected));
+                    && !(IsModeRoomAdd || (RoomEdit as RoomVM).EqualValues(RoomSelected));
             else
             {
 #if DEBUG

@@ -18,11 +18,12 @@
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBox">
-                <Setter Property="IsReadOnly" Value="{Binding IsModeDormitoryEdit}" />
+                <Setter Property="IsReadOnly" Value="True" />
                 <Setter Property="Background" Value="Transparent" />
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsModeDormitoryEdit}" Value="True">
                         <Setter Property="Background" Value="White" />
+                        <Setter Property="IsReadOnly" Value="False" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -36,40 +37,29 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel
-            Grid.ColumnSpan="2"
-            Margin="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Orientation="Horizontal">
-            <TextBlock TextWrapping="Wrap">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Text" Value="Выбранное общежития" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsModeDormitoryEdit, Mode=OneWay}" Value="True">
-                                <Setter Property="Text" Value="Редактирование выбранного" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding IsModeDormitoryAdd}" Value="True">
-                                <Setter Property="Text" Value="Добавление нового" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <TextBlock FontWeight="Bold">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsDormitoryModify, Mode=OneWay}" Value="True">
-                                <Setter Property="Text" Value=" *" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-        </StackPanel>
+
+        <Grid x:Name="grid" Grid.ColumnSpan="2" Margin="5" Height="10"/>
+
+        <TextBlock TextWrapping="Wrap" MaxWidth="{Binding ActualWidth, ElementName=grid}"
+                   HorizontalAlignment="Center" TextAlignment="Center" Grid.ColumnSpan="2">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="Выбранное общежитие" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsModeDormitoryEdit, Mode=OneWay}" Value="True">
+                            <Setter Property="Text" Value="Редактирование выбранного" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsModeDormitoryAdd}" Value="True">
+                            <Setter Property="Text" Value="Добавление нового" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+
         <TextBlock
             Grid.Row="1"
             Margin="5"
@@ -82,6 +72,19 @@
             Grid.Row="3"
             Margin="5"
             Text="Адрес :" />
+        <TextBlock FontWeight="Bold" Grid.ColumnSpan="2"
+                   Grid.Row="4" Foreground="Red">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsDormitoryModify, Mode=OneWay}" Value="True">
+                            <Setter Property="Text" Value="Внесены изменения" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
         <TextBlock
             Grid.Row="1"
             Grid.Column="1"
@@ -101,11 +104,11 @@
             Grid.Row="2"
             Grid.Column="1"
             Margin="5"
-            Text="{Binding DormitoryEdit.Title}" />
+            Text="{Binding DormitoryEdit.Title, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             Grid.Row="3"
             Grid.Column="1"
             Margin="5"
-            Text="{Binding DormitoryEdit.Address}" />
+            Text="{Binding DormitoryEdit.Address, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

@@ -7,10 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    FontSize="14"
+    FontSize="14" 
     mc:Ignorable="d"
     xmlns:vmLib="clr-namespace:StDorVMLibrary;assembly=StDorVMLibrary"
-    d:DataContext="{x:Type vmLib:StDorViewModelDD}">
+    d:DataContext="{x:Type vmLib:StDorViewModelDD}" 
+    Background="#FFD5E8D4" BorderBrush="#FF82B366" BorderThickness="2">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />

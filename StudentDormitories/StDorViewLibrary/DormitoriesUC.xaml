@@ -94,7 +94,7 @@
                         Content="Удалить" />
                 <Button Margin="5"
                         Command="{Binding DormitorySaveCommand}"
-                        CommandParameter="{Binding DormitoryAddCommand}"
+                        CommandParameter="{Binding DormitoryEdit}"
                         Content="Сохранить" />
                 <Button Command="{Binding DormitoryCancelCommand}" Content="Отменить"  Margin="5"/>
             </StackPanel>
