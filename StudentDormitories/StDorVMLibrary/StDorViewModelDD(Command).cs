@@ -1,4 +1,5 @@
 ﻿using CommLibrary;
+using StDorVMLibrary.Interfaces;
 using StDorVMLibrary.VMClasses;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -16,7 +17,7 @@ namespace StDorVMLibrary
         {
             if (ShowExecutableMethod)
                 MessageBox.Show($"Вызван метод {metodName}"
-                    + message != null ? $": {message}" : "");
+                    + (message != null ? $": {message}" : ""));
         }
 #endif
 
@@ -89,12 +90,12 @@ namespace StDorVMLibrary
             ShowMetod();
 #endif
             DormitoryEdit = null;
-            IsModeDormitoryEdit = IsModeDormitoryAdd = false;
+            IsDormitoryModify = IsModeDormitoryEdit = IsModeDormitoryAdd = false;
         }
 
         public RelayCommand RoomAddCommand => _roomAddCommand ?? (_roomAddCommand =
             new RelayCommandAction(RoomAddMetod, () => AllFalseIsMode));
-        
+
         /// <summary>Метод добавления комнаты</summary>
         protected virtual void RoomAddMetod()
         {
@@ -120,7 +121,7 @@ namespace StDorVMLibrary
 #endif
 
             /// Запись экземпляра для редактирования
-            RoomEdit = room.Copy();
+            RoomEdit = (room as RoomVM).Copy();
             IsModeRoomEdit = true;
             IsModeRoomAdd = false;
         }

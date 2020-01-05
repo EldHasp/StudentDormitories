@@ -2,13 +2,12 @@
 {
     /// <summary>Базовый класс для типов VM с ID и обменивающийся данными с DTO типом</summary>
     /// <typeparam name="DTO">Производный от BaseIdDTO тип</typeparam>
-    public abstract class BaseIdVM<DTO> : OnPropertyChangedClass, IEquatableValues<BaseIdVM<DTO>>
+    public abstract class BaseIdVM<DTO> : OnPropertyChangedClass, IEquatableValues<BaseIdVM<DTO>>, IBaseID
         where DTO : BaseIdDTO
     {
         /// <summary>Приватное поля для хранения значения свойства</summary>
         private int _id;
 
-        /// <summary>Идентификатор</summary>
         public int ID { get => _id; set => SetProperty(ref _id, value); }
 
         /// <summary>Создание экземпляра DTO типа со скопированными значениями</summary>

@@ -63,7 +63,6 @@ namespace ConsoleDebug
                 Thread.Sleep(1000);
 
             }
-            Console.ReadLine();
         }
 
         private static void ModelXML_ChangedRoomsEvent(object sender, ActionChanged action, ImmutableHashSet<RoomDTO> rooms)

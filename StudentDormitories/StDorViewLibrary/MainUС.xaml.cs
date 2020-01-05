@@ -1,10 +1,11 @@
-﻿using StDorViewLibrary;
+﻿using StDorVMLibrary;
+using StDorVMLibrary.Interfaces;
+using StDorVMLibrary.VMClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -14,16 +15,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StudentDormitories
+namespace StDorViewLibrary
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для MainUS.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainUС : UserControl
     {
-        public MainWindow()
+        public MainUС()
         {
             InitializeComponent();
+
+            //var vm = new StDorViewModelDD();
+            //vm.Dormitories.Add(new DormitoryVM() );
         }
     }
 }

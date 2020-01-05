@@ -1,0 +1,19 @@
+﻿<StDorViewModelDD
+    xmlns="clr-namespace:StDorVMLibrary;assembly=StDorVMLibrary"
+    xmlns:VMClasses="clr-namespace:StDorVMLibrary.VMClasses;assembly=StDorVMLibrary"
+    IsModeDormitoryAdd="True">
+    <!--<StDorViewModelDD.Rooms>
+        <VMClasses:RoomVM ID="14"/>
+        <VMClasses:RoomVM ID="14"/>
+        <VMClasses:RoomVM ID="14"/>
+        <VMClasses:RoomVM ID="14"/>
+    </StDorViewModelDD.Rooms>
+
+    <StDorViewModelDD.Dormitories>
+        <VMClasses:DormitoryVM Address="Ленина 5" Title="Красное" ID="23"/>
+        <VMClasses:DormitoryVM Address="Панфилова 28" Title="Зелёное" ID="57"/>
+        <VMClasses:DormitoryVM Address="Косомольская 45" Title="Белое" ID="14"/>
+        <VMClasses:DormitoryVM Address="Минина 67" Title="Золотое" ID="35"/>
+    </StDorViewModelDD.Dormitories>-->
+
+</StDorViewModelDD>

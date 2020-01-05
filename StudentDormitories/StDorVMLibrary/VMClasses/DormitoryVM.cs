@@ -1,20 +1,21 @@
 ﻿using CommLibrary;
 using StDorModelLibrary.DTOClasses;
+using StDorVMLibrary.Interfaces;
 
 namespace StDorVMLibrary.VMClasses
 {
     /// <summary>Класс VM для общежитий работающий с DTO типом DormitoryDTO</summary>
-    public class DormitoryVM : BaseIdVM<DormitoryDTO>, ICopy<DormitoryVM>, IEquatableValues<DormitoryVM>
+    public class DormitoryVM : BaseIdVM<DormitoryDTO>, ICopy<IDormitory>, IDormitory, IEquatableValues<IDormitory>
     {
 
         /// <summary>Приватное поля для хранения значения свойства</summary>
         private string _title;
-        /// <summary>Название общежития</summary>
+
         public string Title { get => _title; set => SetProperty(ref _title, value); }
 
         /// <summary>Приватное поля для хранения значения свойства</summary>
         private string _address;
-        /// <summary>Адрес общежития</summary>
+
         public string Address { get => _address; set => SetProperty(ref _address, value); }
 
         /// <summary>Безпараметрический конструктор</summary>
@@ -27,7 +28,7 @@ namespace StDorVMLibrary.VMClasses
         public DormitoryVM(DormitoryDTO dto) : base(dto) => CopyFromDTO(dto);
         /// <summary>Конструктор с передачей DormitoryVM</summary>
         /// <param name="other">Экземпляр DormitoryVM</param>
-        public DormitoryVM(DormitoryVM other) => CopyFrom(other);
+        public DormitoryVM(IDormitory other) => CopyFrom(other);
 
         public override DormitoryDTO CopyDTO()
             => new DormitoryDTO(ID, Title, Address);
@@ -39,23 +40,23 @@ namespace StDorVMLibrary.VMClasses
             Address = dto.Address;
         }
 
-        public DormitoryVM Copy() => (DormitoryVM)MemberwiseClone();
+        public IDormitory Copy() => (IDormitory)MemberwiseClone();
 
-        public void CopyFrom(DormitoryVM other)
+        public void CopyFrom(IDormitory other)
         {
             ID = other.ID;
             Title = other.Title;
             Address = other.Address;
         }
 
-        public void CopyTo(DormitoryVM other)
+        public void CopyTo(IDormitory other)
         {
             other.ID = ID;
             other.Title = Title;
             other.Address = Address;
         }
 
-        public bool EqualValues(DormitoryVM other)
+        public bool EqualValues(IDormitory other)
             => other.ID == ID
             && other.Title == Title
             && other.Address == Address;

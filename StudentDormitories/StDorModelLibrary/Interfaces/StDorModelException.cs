@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace StDorModelLibrary.Interfaces
 {
     /// <summary>Тип для представления ошибок</summary>
+    [Serializable]
     public class StDorModelException : Exception
     {
         /// <summary>Свойство со значением ошибки</summary>
@@ -24,6 +26,15 @@ namespace StDorModelLibrary.Interfaces
         public StDorModelException(string message, StDorModelExceptionEnum valueException, Exception innerException)
             : base(message, innerException)
             => ValueException = valueException;
+
+        public StDorModelException()
+        {
+        }
+
+        protected StDorModelException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

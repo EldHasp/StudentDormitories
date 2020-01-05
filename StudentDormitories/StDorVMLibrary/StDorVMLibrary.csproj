@@ -42,7 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IStDorViewModel.cs" />
+    <Compile Include="Interfaces\IDormitory.cs" />
+    <Compile Include="Interfaces\IDormitoryEdit.cs" />
+    <Compile Include="Interfaces\IRoom.cs" />
+    <Compile Include="Interfaces\IRoomEdit.cs" />
+    <Compile Include="Interfaces\IDormitoriesVM.cs" />
+    <Compile Include="Interfaces\IRoomsVM.cs" />
+    <Compile Include="Interfaces\IStDorViewModel.cs" />
     <Compile Include="StDorViewModelDD%28PropertyNewValue%29.cs" />
     <Compile Include="StDorViewModelDD%28Command%29.cs" />
     <Compile Include="StDorViewModelDD%28Properties%29.cs" />

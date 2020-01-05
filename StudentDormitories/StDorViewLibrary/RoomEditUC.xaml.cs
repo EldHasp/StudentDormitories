@@ -1,5 +1,4 @@
-﻿using StDorViewLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StudentDormitories
+namespace StDorViewLibrary
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для DormitorySelectedUC.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RoomEditUC : UserControl
     {
-        public MainWindow()
+        public RoomEditUC()
         {
             InitializeComponent();
         }

@@ -1,0 +1,118 @@
+﻿<UserControl
+    x:Class="StDorViewLibrary.RoomsUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:commLib="clr-namespace:CommLibrary;assembly=CommLibrary"
+    xmlns:commLibConverters="clr-namespace:CommLibrary.WPFConverters;assembly=CommLibrary"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:StDorViewLibrary"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dataDesign="clr-namespace:StDorViewLibrary.DesignData"
+    d:DesignHeight="450"
+    d:DesignWidth="400"
+    FontSize="14"
+    mc:Ignorable="d"
+    Background="#FFFFF4C3" BorderBrush="#FFFF8000" BorderThickness="2">
+    <d:UserControl.DataContext>
+        <dataDesign:RoomsDD>
+            <dataDesign:RoomsDD.RoomEdit>
+                <dataDesign:RoomDD ID="22" DormitoryID="25" Number="333" />
+            </dataDesign:RoomsDD.RoomEdit>
+            <dataDesign:RoomsDD.DormitorySelected>
+                <dataDesign:DormitoryDD ID="25" Title="Название 25" Address="Адрес" />
+            </dataDesign:RoomsDD.DormitorySelected>
+            <dataDesign:RoomsDD.Dormitories>
+                <dataDesign:DormitoryDD ID="15" Title="Название 15" Address="Адрес" />
+                <dataDesign:DormitoryDD ID="25" Title="Название 25" Address="Адрес" />
+                <dataDesign:DormitoryDD ID="05" Title="Название 555" Address="Адрес" />
+            </dataDesign:RoomsDD.Dormitories>
+            <dataDesign:RoomsDD.Rooms>
+                <dataDesign:RoomDD ID="22" DormitoryID="25" Number="333" />
+                <dataDesign:RoomDD ID="11" DormitoryID="25" Number="777" />
+                <dataDesign:RoomDD ID="99" DormitoryID="25" Number="999" />
+            </dataDesign:RoomsDD.Rooms>
+        </dataDesign:RoomsDD>
+    </d:UserControl.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Border
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Работа с комнатами" HorizontalAlignment="Center" />
+                <TextBlock HorizontalAlignment="Center">
+                    <Run Text="Общежития"/>
+                    <Run Text="{Binding DormitorySelected.Title}"/>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="1" Grid.RowSpan="2" Margin="5" 
+                Background="#FFFFE599" BorderBrush="#FFFF8000" BorderThickness="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                    <Run Text="Общий список комнат"/>
+                </TextBlock>
+                <ListBox 
+                        Grid.Row="1" Margin="5"
+                        DisplayMemberPath="Number"
+                        ItemsSource="{Binding Rooms}"
+                        SelectedItem="{Binding RoomSelected}" 
+                        IsEnabled="{Binding AllFalseIsMode}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <TextBlock>
+                                            <Run Text="{Binding ID}" />
+                                            <Run Text="{Binding Number}" />
+                                            <Run Text="{Binding DormitoryID}" />
+                                    </TextBlock>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" Margin="5"
+                Background="#FFFFE599" BorderBrush="#FFFF8000" BorderThickness="2">
+            <local:RoomEditUC  Margin="5"/>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" Margin="5"
+                Background="#FFFFE599" BorderBrush="#FFFF8000" BorderThickness="2">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                <Button Command="{Binding DormitoryAddCommand}" Content="Добавить"  Margin="5"/>
+                <Button Margin="5"
+                        Command="{Binding DormitoryEditCommand}"
+                        CommandParameter="{Binding DormitorySelected}"
+                        Content="Редактировать" />
+                <Button Margin="5"
+                        Command="{Binding DormitoryRemoveCommand}"
+                        CommandParameter="{Binding DormitorySelected}"
+                        Content="Удалить" />
+                <Button Margin="5"
+                        Command="{Binding DormitorySaveCommand}"
+                        CommandParameter="{Binding DormitoryAddCommand}"
+                        Content="Сохранить" />
+                <Button Command="{Binding DormitoryCancelCommand}" Content="Отменить"  Margin="5"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</UserControl>

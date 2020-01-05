@@ -63,7 +63,7 @@ namespace StDorModel
             roomsXML.Remove(roomXML.ID);
             Save();
 
-           var res = roomsDTO.Remove(room);
+            roomsDTO.Remove(room);
 
             OnRemoveRoomsEvent(ImmutableHashSet<RoomDTO>.Empty.Add(room));
         }

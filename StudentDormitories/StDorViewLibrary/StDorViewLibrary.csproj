@@ -4,19 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2DF33366-0D10-4AC3-AD1A-A2A352A5340D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>StudentDormitories</RootNamespace>
-    <AssemblyName>StudentDormitories</AssemblyName>
+    <ProjectGuid>{E77D64E1-6102-49BA-A032-CEBAD005C7ED}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>StDorViewLibrary</RootNamespace>
+    <AssemblyName>StDorViewLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -51,24 +48,25 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="DesignData\DormitoriesDD.cs" />
+    <Compile Include="DesignData\DormitoryDD.cs" />
+    <Compile Include="DesignData\DormitoryEditClass.cs" />
+    <Compile Include="DesignData\RoomDD.cs" />
+    <Compile Include="DormitoriesUC.xaml.cs">
+      <DependentUpon>DormitoriesUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="RoomsUC.xaml.cs">
+      <DependentUpon>RoomsUC.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="RoomEditUC.xaml.cs">
+      <DependentUpon>RoomEditUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DormitoryEditUC.xaml.cs">
+      <DependentUpon>DormitoryEditUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainUС.xaml.cs">
+      <DependentUpon>MainUС.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,27 +90,42 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Page Include="DesignData\DormitoryEditDesignData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DormitoriesUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RoomsUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RoomEditUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DormitoryEditUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainUС.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModelDesignData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommLibrary\CommLibrary.csproj">
       <Project>{70531673-6a48-408b-bde2-8c82e04f20de}</Project>
       <Name>CommLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StDorModelLibrary\StDorModelLibrary.csproj">
-      <Project>{ccfdcfe6-07b0-48d1-b67b-3008d68299d2}</Project>
-      <Name>StDorModelLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StDorModel\StDorModel.csproj">
-      <Project>{52e55f6d-cdfb-47ed-a2e9-28acc53f9c3b}</Project>
-      <Name>StDorModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StDorViewLibrary\StDorViewLibrary.csproj">
-      <Project>{E77D64E1-6102-49BA-A032-CEBAD005C7ED}</Project>
-      <Name>StDorViewLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\StDorVMLibrary\StDorVMLibrary.csproj">
-      <Project>{d7978d8e-67d3-4a0c-a458-9591b4533c34}</Project>
+      <Project>{D7978D8E-67D3-4A0C-A458-9591B4533C34}</Project>
       <Name>StDorVMLibrary</Name>
     </ProjectReference>
   </ItemGroup>
