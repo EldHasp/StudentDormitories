@@ -5,8 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:StudentDormitories"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewLib="clr-namespace:StDorViewLibrary;assembly=StDorViewLibrary"
     xmlns:stdorvmlibrary="clr-namespace:StDorVMLibrary;assembly=StDorVMLibrary"
+    xmlns:viewLib="clr-namespace:StDorViewLibrary;assembly=StDorViewLibrary"
     xmlns:vmclasses="clr-namespace:StDorVMLibrary.VMClasses;assembly=StDorVMLibrary"
     Title="MainWindow"
     Width="1200"
@@ -15,18 +15,39 @@
     <Window.DataContext>
         <stdorvmlibrary:StDorViewModelDD>
             <stdorvmlibrary:StDorViewModelDD.Dormitories>
-                <vmclasses:DormitoryVM ID="1" Title="Первое" Address="Ленина"/>
-                <vmclasses:DormitoryVM ID="15" Title="Название 15" Address="Кирова" />
-                <vmclasses:DormitoryVM ID="25" Title="Название 25" Address="Арбат" />
-                <vmclasses:DormitoryVM ID="05" Title="Название 555" Address="Переулок" />
+                <vmclasses:DormitoryVM
+                    Title="Первое"
+                    Address="Ленина"
+                    ID="1" />
+                <vmclasses:DormitoryVM
+                    Title="Название 15"
+                    Address="Кирова"
+                    ID="15" />
+                <vmclasses:DormitoryVM
+                    Title="Название 25"
+                    Address="Арбат"
+                    ID="25" />
+                <vmclasses:DormitoryVM
+                    Title="Название 555"
+                    Address="Переулок"
+                    ID="05" />
             </stdorvmlibrary:StDorViewModelDD.Dormitories>
             <stdorvmlibrary:StDorViewModelDD.Rooms>
-                <vmclasses:RoomVM ID="22" DormitoryID="25" Number="333" />
-                <vmclasses:RoomVM ID="11" DormitoryID="25" Number="777" />
-                <vmclasses:RoomVM ID="99" DormitoryID="25" Number="999" />
+                <vmclasses:RoomVM
+                    DormitoryID="25"
+                    ID="22"
+                    Number="333" />
+                <vmclasses:RoomVM
+                    DormitoryID="25"
+                    ID="11"
+                    Number="777" />
+                <vmclasses:RoomVM
+                    DormitoryID="25"
+                    ID="99"
+                    Number="999" />
             </stdorvmlibrary:StDorViewModelDD.Rooms>
 
         </stdorvmlibrary:StDorViewModelDD>
     </Window.DataContext>
-    <viewLib:MainUС/>
+    <viewLib:MainUС />
 </Window>

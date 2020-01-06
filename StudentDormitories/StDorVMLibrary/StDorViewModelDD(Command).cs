@@ -24,7 +24,7 @@ namespace StDorVMLibrary
         public RelayCommand DormitoryAddCommand => _dormitoryAddCommand ?? (_dormitoryAddCommand =
             new RelayCommandAction(DormitoryAddMetod, () => AllFalseIsMode));
 
-        /// <summary>Метод добавления общежития</summary>
+        /// <summary>Метод добавления Общежития</summary>
         protected virtual void DormitoryAddMetod()
         {
 #if DEBUG
@@ -40,8 +40,8 @@ namespace StDorVMLibrary
         public RelayCommand DormitoryEditCommand => _dormitoryEditCommand ?? (_dormitoryEditCommand =
             new RelayCommandAction<DormitoryVM>(DormitoryEditMetod, _ => AllFalseIsMode));
 
-        /// <summary>Метод редактирования общежития</summary>
-        /// <param name="dormitory">Редактируемое общежитие</param>
+        /// <summary>Метод редактирования Общежития</summary>
+        /// <param name="dormitory">Редактируемое Общежитие</param>
         protected virtual void DormitoryEditMetod(DormitoryVM dormitory)
         {
 #if DEBUG
@@ -57,8 +57,8 @@ namespace StDorVMLibrary
         public RelayCommand DormitoryRemoveCommand => _dormitoryRemoveCommand ?? (_dormitoryRemoveCommand =
             new RelayCommandAction<DormitoryVM>(DormitoryRemoveMetod, _ => AllFalseIsMode));
 
-        /// <summary>Метод удаления общежития</summary>
-        /// <param name="dormitory">Удаляемое общежитие</param>
+        /// <summary>Метод удаления Общежития</summary>
+        /// <param name="dormitory">Удаляемое Общежитие</param>
         protected virtual void DormitoryRemoveMetod(DormitoryVM dormitory)
         {
 #if DEBUG
@@ -67,17 +67,37 @@ namespace StDorVMLibrary
         }
 
         public RelayCommand DormitorySaveCommand => _dormitorySaveCommand ?? (_dormitorySaveCommand =
-            new RelayCommandAction(DormitorySaveMetod,
-                () => IsModeDormitoryEdit && IsDormitoryModify && DormitoryEdit != null));
+            new RelayCommandAction<DormitoryVM>(DormitorySaveMetod,
+                _ => IsModeDormitoryEdit && IsDormitoryModify && DormitoryEdit != null));
 
-        /// <summary>Метод сохранения общежития из свойства DormitoryEdit</summary>
-        protected virtual void DormitorySaveMetod()
+        /// <summary>Метод сохранения Общежития</summary>
+        protected void DormitorySaveMetod(DormitoryVM dormitory)
         {
 #if DEBUG
-            ShowMetod($"{DormitoryEdit.ID} {DormitoryEdit.Title} {DormitoryEdit.Address}");
+            ShowMetod($" {DormitoryEdit.ID} {DormitoryEdit.Title} {DormitoryEdit.Address}");
 #endif
+            if (IsModeDormitoryAdd)
+                DormitorySaveAddMetod(dormitory);
+            else
+                DormitorySaveChangeMetod(dormitory);
+
             /// После сохранения выход из режима редактирования
             DormitoryCancelMetod();
+        }
+
+        /// <summary>Метод сохранения добавляемого Общежития</summary>
+        protected virtual void DormitorySaveAddMetod(DormitoryVM dormitory)
+        {
+#if DEBUG
+            ShowMetod($"Добавляется {DormitoryEdit.ID} {DormitoryEdit.Title} {DormitoryEdit.Address}");
+#endif
+        }
+        /// <summary>Метод сохранения изменяемого Общежития</summary>
+        protected virtual void DormitorySaveChangeMetod(DormitoryVM dormitory)
+        {
+#if DEBUG
+            ShowMetod($"Сохраняется {DormitoryEdit.ID} {DormitoryEdit.Title} {DormitoryEdit.Address}");
+#endif
         }
 
         public RelayCommand DormitoryCancelCommand => _dormitoryCancelCommand ?? (_dormitoryCancelCommand =
@@ -96,7 +116,7 @@ namespace StDorVMLibrary
         public RelayCommand RoomAddCommand => _roomAddCommand ?? (_roomAddCommand =
             new RelayCommandAction(RoomAddMetod, () => AllFalseIsMode));
 
-        /// <summary>Метод добавления комнаты</summary>
+        /// <summary>Метод добавления Комнаты</summary>
         protected virtual void RoomAddMetod()
         {
 #if DEBUG
@@ -104,7 +124,7 @@ namespace StDorVMLibrary
 #endif
 
             /// Создание нового экземпляра для добавления
-            RoomEdit = new RoomVM();
+            RoomEdit = new RoomVM() { DormitoryID = DormitorySelected.ID };
             /// Установка режимов
             IsModeRoomEdit = IsModeRoomAdd = true;
         }
@@ -112,8 +132,8 @@ namespace StDorVMLibrary
         public RelayCommand RoomEditCommand => _roomEditCommand ?? (_roomEditCommand =
             new RelayCommandAction<RoomVM>(RoomEditMetod, _ => AllFalseIsMode));
 
-        /// <summary>Метод редактирования комнаты</summary>
-        /// <param name="room">Редактируемая комната</param>
+        /// <summary>Метод редактирования Комнаты</summary>
+        /// <param name="room">Редактируемая Комната</param>
         protected virtual void RoomEditMetod(RoomVM room)
         {
 #if DEBUG
@@ -129,8 +149,8 @@ namespace StDorVMLibrary
         public RelayCommand RoomRemoveCommand => _roomRemoveCommand ?? (_roomRemoveCommand =
             new RelayCommandAction<RoomVM>(RoomRemoveMetod, _ => AllFalseIsMode));
 
-        /// <summary>Метод удаления комнаты</summary>
-        /// <param name="room">Удаляемая комната</param>
+        /// <summary>Метод удаления Комнаты</summary>
+        /// <param name="room">Удаляемая Комната</param>
         protected virtual void RoomRemoveMetod(RoomVM room)
         {
 #if DEBUG
@@ -140,19 +160,38 @@ namespace StDorVMLibrary
 
 
         public RelayCommand RoomSaveCommand => _roomSaveCommand ?? (_roomSaveCommand =
-            new RelayCommandAction(RoomSaveMetod,
-                () => IsModeRoomEdit && IsRoomModify && RoomEdit != null));
+            new RelayCommandAction<RoomVM>(RoomSaveMetod,
+                _ => IsModeRoomEdit && IsRoomModify && RoomEdit != null));
 
-        /// <summary>Метод сохранения общежития из свойства DormitoryEdit</summary>
-        protected virtual void RoomSaveMetod()
+        /// <summary>Метод сохранения Общежития</summary>
+        protected void RoomSaveMetod(RoomVM room)
         {
 #if DEBUG
             ShowMetod($"{RoomEdit.ID} {RoomEdit.DormitoryID} {RoomEdit.Number}");
 #endif
+            if (IsModeRoomAdd)
+                RoomSaveAddMetod(room);
+            else
+                RoomSaveChangeMetod(room);
             /// После сохранения выход из режима редактирования
             RoomCancelMetod();
         }
 
+
+        /// <summary>Метод сохранения добавляемой Комнаты</summary>
+        protected virtual void RoomSaveAddMetod(RoomVM room)
+        {
+#if DEBUG
+            ShowMetod($"Добавляется {RoomEdit.ID} {RoomEdit.DormitoryID} {RoomEdit.Number}");
+#endif
+        }
+        /// <summary>Метод сохранения изменяемой Комнаты</summary>
+        protected virtual void RoomSaveChangeMetod(RoomVM room)
+        {
+#if DEBUG
+            ShowMetod($"Сохраняется {RoomEdit.ID} {RoomEdit.DormitoryID} {RoomEdit.Number}");
+#endif
+        }
 
         public RelayCommand RoomCancelCommand => _roomCancelCommand ?? (_roomCancelCommand =
             new RelayCommandAction(RoomCancelMetod, () => IsModeRoomEdit));

@@ -5,7 +5,7 @@ using StDorVMLibrary.Interfaces;
 namespace StDorVMLibrary.VMClasses
 {
     /// <summary>Класс VM для общежитий работающий с DTO типом DormitoryDTO</summary>
-    public class DormitoryVM : BaseIdVM<DormitoryDTO>, ICopy<IDormitory>, IDormitory, IEquatableValues<IDormitory>
+    public class DormitoryVM : BaseIdVM<DormitoryDTO>, ICopy<IDormitory>, IDormitory, IEquatableValues<IDormitory>, IEquatableValues<DormitoryDTO>
     {
 
         /// <summary>Приватное поля для хранения значения свойства</summary>
@@ -57,6 +57,11 @@ namespace StDorVMLibrary.VMClasses
         }
 
         public bool EqualValues(IDormitory other)
+            => other.ID == ID
+            && other.Title == Title
+            && other.Address == Address;
+
+        public bool EqualValues(DormitoryDTO other)
             => other.ID == ID
             && other.Title == Title
             && other.Address == Address;

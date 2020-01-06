@@ -5,13 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:StDorViewLibrary"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vmLib="clr-namespace:StDorVMLibrary;assembly=StDorVMLibrary"
+    d:DataContext="{x:Type vmLib:StDorViewModelDD}"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    FontSize="14" 
-    mc:Ignorable="d"
-    xmlns:vmLib="clr-namespace:StDorVMLibrary;assembly=StDorVMLibrary"
-    d:DataContext="{x:Type vmLib:StDorViewModelDD}" 
-    Background="#FFD5E8D4" BorderBrush="#FF82B366" BorderThickness="2">
+    Background="#FFD5E8D4"
+    BorderBrush="#FF82B366"
+    BorderThickness="2"
+    FontSize="14"
+    mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -21,45 +23,58 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <CheckBox x:Name="checkBox" IsChecked="True"
-                  Content="Включить Панель Общежитий"
-                  Margin="5" HorizontalAlignment="Center" 
-                  IsEnabled="{Binding IsChecked, ElementName=checkBox1}"/>
-        <CheckBox x:Name="checkBox1" Grid.Column="1" IsChecked="True"
-                  Content="Включить Панель Комнат"
-                  Margin="5" HorizontalAlignment="Center" 
-                  IsEnabled="{Binding IsChecked, ElementName=checkBox}"/>
-        <local:DormitoriesUC Margin="5" Grid.Row="1">
+        <Grid Grid.ColumnSpan="2" IsEnabled="{Binding AllFalseIsMode, Mode=OneWay}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <CheckBox
+                x:Name="checkBox"
+                Margin="5"
+                HorizontalAlignment="Center"
+                Content="Включить Панель Общежитий"
+                IsChecked="True"
+                IsEnabled="{Binding IsChecked, ElementName=checkBox1}" />
+            <CheckBox
+                x:Name="checkBox1"
+                Grid.Column="1"
+                Margin="5"
+                HorizontalAlignment="Center"
+                Content="Включить Панель Комнат"
+                IsChecked="True"
+                IsEnabled="{Binding IsChecked, ElementName=checkBox}" />
+        </Grid>
+        <local:DormitoriesUC Grid.Row="1" Margin="5">
             <UserControl.Style>
                 <Style TargetType="UserControl">
-                    <Setter Property="Grid.Column" Value="0"/>
-                    <Setter Property="Grid.ColumnSpan" Value="2"/>
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Grid.Column" Value="0" />
+                    <Setter Property="Grid.ColumnSpan" Value="2" />
+                    <Setter Property="Visibility" Value="Collapsed" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsChecked, ElementName=checkBox1}" Value="True">
-                            <Setter Property="Grid.Column" Value="0"/>
-                            <Setter Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter Property="Grid.Column" Value="0" />
+                            <Setter Property="Grid.ColumnSpan" Value="1" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding IsChecked, ElementName=checkBox}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </UserControl.Style>
         </local:DormitoriesUC>
-        <local:RoomsUC Margin="5" Grid.Row="1">
+        <local:RoomsUC Grid.Row="1" Margin="5">
             <UserControl.Style>
                 <Style TargetType="UserControl">
-                    <Setter Property="Grid.Column" Value="0"/>
-                    <Setter Property="Grid.ColumnSpan" Value="2"/>
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Grid.Column" Value="0" />
+                    <Setter Property="Grid.ColumnSpan" Value="2" />
+                    <Setter Property="Visibility" Value="Collapsed" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsChecked, ElementName=checkBox}" Value="True">
-                            <Setter Property="Grid.Column" Value="1"/>
-                            <Setter Property="Grid.ColumnSpan" Value="1"/>
+                            <Setter Property="Grid.Column" Value="1" />
+                            <Setter Property="Grid.ColumnSpan" Value="1" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding IsChecked, ElementName=checkBox1}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
