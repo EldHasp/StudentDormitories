@@ -111,10 +111,17 @@
       <Project>{E77D64E1-6102-49BA-A032-CEBAD005C7ED}</Project>
       <Name>StDorViewLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StDorViewModel\StDorViewModel.csproj">
+      <Project>{D2BC9DF4-F965-4601-89C6-D9EA14C74772}</Project>
+      <Name>StDorViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StDorVMLibrary\StDorVMLibrary.csproj">
       <Project>{d7978d8e-67d3-4a0c-a458-9591b4533c34}</Project>
       <Name>StDorVMLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

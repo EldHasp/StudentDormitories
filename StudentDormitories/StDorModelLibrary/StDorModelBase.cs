@@ -13,7 +13,7 @@ namespace StDorModelLibrary
         public bool IsLoaded { get; protected set; } = false;
 
         /// <summary>Конструктор по умолчанию. Устанавливает IsDisposable = <see langword="false"/>.</summary>
-        public StDorModelBase() => IsDisposable = false;
+        protected StDorModelBase() => IsDisposable = false;
 
         public event ChangedDormitoriesHandler ChangedDormitoriesEvent;
         /// <summary>Вспомогательный метод вызова события после удаления общежития</summary>
@@ -69,7 +69,20 @@ namespace StDorModelLibrary
             Source = null;
         }
 
-        public virtual void Dispose() => IsLoaded = !(IsDisposable = true);
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        ~StDorModelBase()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>Выполняет определяемые приложением задачи, связанные с удалением, высвобождением
+        /// или сбросом неуправляемых ресурсов</summary>
+        /// <param name="disposing">Откуда осуществляется вызов метода:
+        /// <see langword="true"/> из метода Dispose или <see langword="false"/> из метода завершения</param>
+        protected virtual void Dispose(bool disposing) => IsLoaded = !(IsDisposable = true);
 
         public Task<ImmutableHashSet<DormitoryDTO>> GetDormitoriesAsync() => Task.Factory.StartNew(GetDormitories);
         /// <summary>Возвращает все общежития</summary>

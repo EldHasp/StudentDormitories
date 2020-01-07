@@ -36,5 +36,7 @@ namespace StDorModelLibrary.Interfaces
             throw new NotImplementedException();
         }
         #endregion
+
+        public override string ToString() => ValueException + Environment.NewLine + base.ToString();
     }
 }

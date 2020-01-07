@@ -105,7 +105,7 @@ namespace StDorModel
             try
             {
                 if (File.Exists(Source))
-                    File.Move(Source, Path.Combine(Path.GetFullPath(Source), Path.GetFileNameWithoutExtension(Source) + "(" + DateTime.Now + ")" + Path.GetExtension(Source)));
+                    File.Move(Source, Path.Combine(Path.GetDirectoryName(Source), Path.GetFileNameWithoutExtension(Source) + "(" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ")" + Path.GetExtension(Source)));
 
                 using (var file = File.Create(Source))
                      serializer.Serialize(file, studentDormitories);
@@ -116,7 +116,7 @@ namespace StDorModel
             }
         }
 
-        public override void Dispose()
+        public new void Dispose()
         {
             base.Dispose();
             studentDormitories = null;

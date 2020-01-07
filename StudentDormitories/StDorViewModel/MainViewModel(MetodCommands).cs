@@ -1,5 +1,6 @@
 ﻿using StDorVMLibrary;
 using StDorVMLibrary.VMClasses;
+using System;
 
 namespace StDorViewModel
 {
@@ -17,7 +18,8 @@ namespace StDorViewModel
         /// <param name="dormitory">Удаляемое Общежитие</param>
         protected virtual async void DormitoryRemoveMetodAsync(DormitoryVM dormitory)
         {
-            await model.RemoveDormitoryAsync(dormitory.CopyDTO());
+            try { await model.RemoveDormitoryAsync(dormitory.CopyDTO()); }
+            catch (Exception ex) { OnException(ex); }
         }
 
         protected override void DormitorySaveAddMetod(DormitoryVM dormitory)
@@ -29,7 +31,8 @@ namespace StDorViewModel
         /// <param name="dormitory">Добавляемое Общежитие</param>
         protected virtual async void DormitoryAddMetodAsync(DormitoryVM dormitory)
         {
-            await model.AddDormitoryAsync(dormitory.CopyDTO());
+            try { await model.AddDormitoryAsync(dormitory.CopyDTO()); }
+            catch (Exception ex) { OnException(ex); }
         }
         protected override void DormitorySaveChangeMetod(DormitoryVM dormitory)
         {
@@ -40,7 +43,8 @@ namespace StDorViewModel
         /// <param name="dormitory">Новые данные для Общежития</param>
         protected virtual async void DormitoryChangeMetodAsync(DormitoryVM dormitory)
         {
-            await model.ChangeDormitoryAsync(dormitory.CopyDTO());
+            try { await model.ChangeDormitoryAsync(dormitory.CopyDTO()); }
+            catch (Exception ex) { OnException(ex); }
         }
 
         protected override void RoomRemoveMetod(RoomVM room)
@@ -53,7 +57,8 @@ namespace StDorViewModel
         /// <param name="dormitory">Удаляемая Комната</param>
         protected virtual async void RoomRemoveMetodAsync(RoomVM room)
         {
-            await model.RemoveRoomAsync(room.CopyDTO());
+            try { await model.RemoveRoomAsync(room.CopyDTO()); }
+            catch (Exception ex) { OnException(ex); }
         }
 
         protected override void RoomSaveAddMetod(RoomVM room)
@@ -66,7 +71,8 @@ namespace StDorViewModel
         /// <param name="room">Добавляемая Комната</param>
         protected virtual async void RoomAddMetodAsync(RoomVM room)
         {
-            await model.AddRoomAsync(room.CopyDTO());
+            try { await model.AddRoomAsync(room.CopyDTO()); }
+            catch (Exception ex) { OnException(ex); }
         }
 
         protected override void RoomSaveChangeMetod(RoomVM room)
@@ -79,7 +85,8 @@ namespace StDorViewModel
         /// <param name="room">Новые данные для Комнаты</param>
         protected virtual async void RoomChangeMetodAsync(RoomVM room)
         {
-            await model.ChangeRoomAsync(room.CopyDTO());
+            try { await model.ChangeRoomAsync(room.CopyDTO()); }
+            catch (Exception ex) { OnException(ex); }
         }
     }
 }

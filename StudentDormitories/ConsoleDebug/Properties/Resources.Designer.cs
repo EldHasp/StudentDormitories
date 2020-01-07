@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentDormitories.Properties {
+namespace ConsoleDebug.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace StudentDormitories.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("StudentDormitories.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ConsoleDebug.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,15 @@ namespace StudentDormitories.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на dataStDor.xml.
+        /// </summary>
+        internal static string DefaultSourceXML {
+            get {
+                return ResourceManager.GetString("DefaultSourceXML", resourceCulture);
             }
         }
     }

@@ -14,11 +14,13 @@ namespace ConsoleDebug
     {
         static void Main()
         {
+
+
             StDorModelXML modelXML = new StDorModelXML();
             modelXML.ChangedDormitoriesEvent += ModelXML_ChangedDormitoriesEvent;
             modelXML.ChangedRoomsEvent += ModelXML_ChangedRoomsEvent;
 
-            string fileNameXML = "dataStDor.xml";
+            string fileNameXML = Properties.Resources.DefaultSourceXML;
 
             Console.WriteLine("Загрузка данных");
             Task task = modelXML.LoadAsync(fileNameXML);

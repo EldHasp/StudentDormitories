@@ -1,9 +1,11 @@
 ﻿<Application x:Class="StudentDormitories.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:StudentDormitories"
-             StartupUri="MainWindow.xaml">
+             xmlns:system="clr-namespace:System;assembly=mscorlib" 
+             Startup="Application_Startup" 
+             ShutdownMode="OnMainWindowClose"
+             >
     <Application.Resources>
-         
+        <system:String x:Key="DefaultSourceXML">dataStDor.xml</system:String>
     </Application.Resources>
 </Application>

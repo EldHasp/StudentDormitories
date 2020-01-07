@@ -203,7 +203,7 @@ namespace StDorVMLibrary
             ShowMetod();
 #endif
             RoomEdit = null;
-            IsModeRoomEdit = IsModeRoomAdd = false;
+            IsRoomModify = IsModeRoomEdit = IsModeRoomAdd = false;
         }
 
         #region Поля для хранения значений свойств-команд

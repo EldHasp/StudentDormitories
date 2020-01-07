@@ -124,8 +124,9 @@ namespace StDorViewModel
         /// <remarks>Метод должен выполняться в UI потоке</remarks>
         private void RoomsAddUI(IEnumerable<RoomVM> rooms)
         {
-            foreach (var room in rooms.Where(r => r.DormitoryID == DormitorySelected?.ID))
-                Rooms.Add(room);
+            lock (Rooms)
+                foreach (var room in rooms.Where(r => r.DormitoryID == DormitorySelected?.ID))
+                    Rooms.Add(room);
         }
 
         /// <summary>Изменение Комнат</summary>
@@ -178,8 +179,9 @@ namespace StDorViewModel
         /// <remarks>Метод должен выполняться в UI потоке</remarks>
         private void RoomsChangedUI(Dictionary<RoomDTO, RoomVM> rooms)
         {
-            foreach (var room in rooms)
-                room.Value.CopyFromDTO(room.Key);
+            lock (Rooms)
+                foreach (var room in rooms)
+                    room.Value.CopyFromDTO(room.Key);
         }
 
         /// <summary>Удаление Комнат</summary>
@@ -236,8 +238,9 @@ namespace StDorViewModel
         /// <remarks>Метод должен выполняться в UI потоке</remarks>
         private void RoomsRemoveUI(List<RoomVM> rooms)
         {
-            foreach (var room in rooms)
-                Rooms.Remove(room);
+            lock (Rooms)
+                foreach (var room in rooms)
+                    Rooms.Remove(room);
         }
 
         /// <summary>Добавление Общежитий</summary>
@@ -285,8 +288,9 @@ namespace StDorViewModel
         /// <remarks>Метод должен выполняться в UI потоке</remarks>
         private void DormitoriesAddUI(IEnumerable<DormitoryVM> dormitories)
         {
-            foreach (var dorm in dormitories)
-                Dormitories.Add(dorm);
+            lock (Dormitories)
+                foreach (var dorm in dormitories)
+                    Dormitories.Add(dorm);
         }
 
         /// <summary>Изменение Общежитий</summary>
@@ -337,8 +341,9 @@ namespace StDorViewModel
         /// <remarks>Метод должен выполняться в UI потоке</remarks>
         private void DormitoriesChangedUI(Dictionary<DormitoryDTO, DormitoryVM> dormitories)
         {
-            foreach (var dormitory in dormitories)
-                dormitory.Value.CopyFromDTO(dormitory.Key);
+            lock (Dormitories)
+                foreach (var dormitory in dormitories)
+                    dormitory.Value.CopyFromDTO(dormitory.Key);
         }
 
         /// <summary>Удаление Общежитий</summary>
@@ -359,7 +364,7 @@ namespace StDorViewModel
                 foreach (var dormitory in dormitories.ToArray())
                 {
                     /// Если в имеющейся коллекции есть общежитие с таким ID
-                    DormitoryVM dorm = (DormitoryVM)Rooms.FirstOrDefault(d => d.ID == dormitory.ID);
+                    DormitoryVM dorm = (DormitoryVM)Dormitories.FirstOrDefault(d => d.ID == dormitory.ID);
                     if (dorm != null)
                     {
                         /// Проверка на идентичность данных
@@ -393,8 +398,9 @@ namespace StDorViewModel
         /// <remarks>Метод должен выполняться в UI потоке</remarks>
         private void DormitoriesRemoveUI(List<DormitoryVM> dormitories)
         {
-            foreach (var dorm in dormitories)
-                Dormitories.Remove(dorm);
+            lock (Dormitories)
+                foreach (var dorm in dormitories)
+                    Dormitories.Remove(dorm);
         }
 
     }

@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IDormitoriesVM.cs" />
     <Compile Include="Interfaces\IRoomsVM.cs" />
     <Compile Include="Interfaces\IStDorViewModel.cs" />
+    <Compile Include="StDorViewModelDD%28ExceptionEvent%29.cs" />
     <Compile Include="StDorViewModelDD%28PropertyNewValue%29.cs" />
     <Compile Include="StDorViewModelDD%28Command%29.cs" />
     <Compile Include="StDorViewModelDD%28Properties%29.cs" />
