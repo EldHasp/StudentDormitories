@@ -161,7 +161,7 @@ namespace StDorVMLibrary
 
         public RelayCommand RoomSaveCommand => _roomSaveCommand ?? (_roomSaveCommand =
             new RelayCommandAction<RoomVM>(RoomSaveMetod,
-                _ => IsModeRoomEdit && IsRoomModify && RoomEdit != null));
+                _ => IsModeRoomEdit && (IsModeRoomAdd || IsRoomModify && RoomEdit != null)));
 
         /// <summary>Метод сохранения Общежития</summary>
         protected void RoomSaveMetod(RoomVM room)

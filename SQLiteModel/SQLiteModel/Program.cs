@@ -1,48 +1,27 @@
-﻿using StDorModelLibrary.DTOClasses;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using StudentDormitories;
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics;
 
 namespace SQLiteModel
 {
     class Program
     {
+        /// <summary>
+        /// Application Entry Point.
+        /// </summary>
+        [STAThread()]
+        [DebuggerNonUserCode()]
+        [GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
         static void Main(string[] args)
         {
 
-            List<RoomDTO> Rooms;
-            List<DormitoryDTO> Dormitories;
-            List<DormitoryDTO> RoomsDormitories;
-            List<List<RoomDTO>> DormitoriesRooms;
-            int rCount;
-            int dCount;
-            using (StudentDormitoriesContext sdc = new StudentDormitoriesContext())
-            {
-                sdc.Dormitories.Load();
-                Dormitories = new List<DormitoryDTO>();
-                DormitoriesRooms = new List<List<RoomDTO>>();
-                foreach (DormitoryBD dorm in sdc.Dormitories)
-                {
-                    Dormitories.Add(dorm.Copy());
-                    DormitoriesRooms
-                        .Add(new List<RoomDTO>(dorm.Rooms.Select(rm => rm.Copy()))); 
-                }
+            ModelSQLite model = new ModelSQLite("DefaultConnection");
 
-                sdc.Rooms.Load();
-                Rooms = new List<RoomDTO>();
-                RoomsDormitories = new List<DormitoryDTO>();
+            App app = new App(model);
 
-                foreach (RoomBD room in sdc.Rooms)
-                {
-                    Rooms.Add(room.Copy());
-                    RoomsDormitories.Add(room.Dormitory.Copy()); // Здесь room.Dormitory = null
-                }
-
-                rCount = Rooms.Count();
-                dCount = Dormitories.Count();
-            }
-
-
+            app.InitializeComponent();
+            app.Run();
         }
     }
 }

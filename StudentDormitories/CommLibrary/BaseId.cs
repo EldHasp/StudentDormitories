@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace CommLibrary
 {
-    /// <summary>Базовый класс для типов с уникальным ID</summary>
+    /// <summary>Базовый класс для типов с уникальным ID для XML сериализации</summary>
     [Serializable]
     public class BaseId : IEquatable<BaseId>, IEqualityComparer<BaseId>
     {

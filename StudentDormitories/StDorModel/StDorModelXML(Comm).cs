@@ -25,10 +25,12 @@ namespace StDorModel
         protected StudentDormitoriesXML studentDormitories;
         /// <summary>Словарь десериализованных общежитий с ключом по ID</summary>
         protected Dictionary<int, DormitoryXML> dormitoriesXML;
+
         /// <summary>Множество общежитий для ViewModel</summary>
         protected readonly ImmutableHashSet<DormitoryDTO>.Builder dormitoriesDTO = ImmutableHashSet.CreateBuilder<DormitoryDTO>();
         /// <summary>Словарь десериализованных комнат с ключом по ID</summary>
         protected Dictionary<int, RoomXML> roomsXML;
+
         /// <summary>Множество комнат для ViewModel</summary>
         protected readonly ImmutableHashSet<RoomDTO>.Builder roomsDTO = ImmutableHashSet.CreateBuilder<RoomDTO>();
 
@@ -116,9 +118,9 @@ namespace StDorModel
             }
         }
 
-        public new void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            base.Dispose();
+            base.Dispose(disposing);
             studentDormitories = null;
             dormitoriesXML = null;
             roomsXML = null;

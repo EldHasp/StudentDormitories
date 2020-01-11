@@ -12,7 +12,7 @@
     Width="1200"
     Height="800"
     mc:Ignorable="d">
-    <Window.DataContext>
+    <d:Window.DataContext>
         <stdorvmlibrary:StDorViewModelDD>
             <stdorvmlibrary:StDorViewModelDD.Dormitories>
                 <vmclasses:DormitoryVM
@@ -48,6 +48,6 @@
             </stdorvmlibrary:StDorViewModelDD.Rooms>
 
         </stdorvmlibrary:StDorViewModelDD>
-    </Window.DataContext>
+    </d:Window.DataContext>
     <viewLib:MainUС />
 </Window>

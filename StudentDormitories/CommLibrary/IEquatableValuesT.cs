@@ -6,7 +6,7 @@
     {
         /// <summary>Метод сравнивающий значения</summary>
         /// <param name="other">Другой экземпляр с чьими значениями происходит сравнение</param>
-        /// <returns></returns>
+        /// <returns><see langword="true"/> если значения равны</returns>
         bool EqualValues(T other);
     }
 }

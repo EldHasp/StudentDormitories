@@ -1,6 +1,5 @@
 ﻿using CommLibrary;
 using StDorModelLibrary.DTOClasses;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,13 +7,8 @@ namespace SQLiteModel
 {
     /// <summary>Класс для представления Комнаты из БД</summary>
     [Table("Rooms")]
-    public class RoomBD : ICopy<RoomDTO>
+    public class RoomBD : BaseIdDB<RoomDTO>, IEquatableValues<RoomBD>
     {
-        /// <summary>Идентификатор</summary>
-        [Key]
-        [Column("ID")]
-        public int ID { get; set; }
-
         /// <summary>ID Общежития - Внешний ключ</summary>
         [Required]
         [Column("DormitoryID")]
@@ -33,18 +27,39 @@ namespace SQLiteModel
         [ForeignKey("DormitoryID")]
         public DormitoryBD Dormitory { get; set; }
 
-        public RoomDTO Copy() => new RoomDTO(ID, DormitoryID, Number);
+        public override RoomDTO CopyDTO() => new RoomDTO(ID, DormitoryID, Number);
 
-        public void CopyFrom(RoomDTO other)
+        public override void CopyFromDTO(RoomDTO dto)
         {
-            ID = other.ID;
-            DormitoryID = other.DormitoryID;
-            Number = other.Number;
+            ID = dto.ID;
+            DormitoryID = dto.DormitoryID;
+            Number = dto.Number;
         }
 
-        public void CopyTo(RoomDTO other)
+        public override bool EqualValues(RoomDTO dto)
+            => ID == dto.ID
+            && DormitoryID == dto.DormitoryID
+            && Number == dto.Number;
+
+        public bool EqualValues(RoomBD other)
+            => ID == other.ID
+            && DormitoryID == other.DormitoryID
+            && Number == other.Number;
+
+        /// <summary>Безпараметрический конструктор</summary>
+        public RoomBD() { }
+        /// <summary>Конструктор с передачей значений</summary>
+        /// <param name="id">Значение ID</param>
+        /// <param name="dormitoryID">Связанное общежитие</param>
+        /// <param name="number">Номер комнаты</param>
+        public RoomBD(int id, int dormitoryID, int number)
+        : base(id)
         {
-            throw new NotImplementedException();
+            DormitoryID = dormitoryID;
+            Number = number;
         }
+        /// <summary>Конструктор с передачей DTO типа</summary>
+        /// <param name="dto">Экземпляр DTO типа</param>
+        public RoomBD(RoomDTO dto) : this(dto.ID, dto.DormitoryID, dto.Number) { }
     }
 }

@@ -3,6 +3,7 @@ using StDorModel.XMLClasses;
 using StDorModelLibrary.DTOClasses;
 using StDorModelLibrary.Interfaces;
 using System.Collections.Immutable;
+using System.Linq;
 
 namespace StDorModel
 {
@@ -49,8 +50,11 @@ namespace StDorModel
             if (!dormitoriesXML.TryGetValue(dormitory.ID, out DormitoryXML dormXML))
                 throw new StDorModelException($"Не найдено общежитие с ID={dormitory.ID}", StDorModelExceptionEnum.NoSuchID);
 
-            if(!EqualsDormitory(dormitory, dormXML))
+            if (!EqualsDormitory(dormitory, dormXML))
                 throw new StDorModelException($"Данные общежития с ID={dormitory.ID} не совпадают.", StDorModelExceptionEnum.DoNotMatch);
+
+            if (roomsXML.Values.Any(rm => rm.DormitoryID == dormitory.ID))
+                throw new StDorModelException($"В общежитии с ID={dormitory.ID} не удалены комнаты.", StDorModelExceptionEnum.SaveData);
 
             studentDormitories.Dormitories.Remove(dormXML);
             dormitoriesXML.Remove(dormXML.ID);

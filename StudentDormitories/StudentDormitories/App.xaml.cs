@@ -21,18 +21,23 @@ namespace StudentDormitories
 
         /// <summary>Конструктор по умолчанию</summary>
         public App()
+            :this(new StDorModelXML())
+        {}
+
+        public App(IStDorModel model)
         {
-            model = new StDorModelXML();
+            this.model = model ?? throw new ArgumentNullException(nameof(model));
             viewModel = new MainViewModel(Dispatcher, model);
             viewModel.ExceptionEvent += ShowException;
 
-            Window mainWindow = new Window()
+            mainWindow = new Window()
             {
                 Width = 1000,
                 Height = 800,
                 Content = new MainUС(),
                 DataContext = viewModel
             };
+
         }
 
         /// <summary>Обработчик события старта приложения</summary>

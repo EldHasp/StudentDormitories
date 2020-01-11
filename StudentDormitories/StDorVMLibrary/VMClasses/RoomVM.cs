@@ -7,12 +7,12 @@ namespace StDorVMLibrary.VMClasses
     /// <summary>Класс VM для комнат работающий с DTO типом RoomDTO</summary>
     public class RoomVM : BaseIdVM<RoomDTO>, ICopy<IRoom>, IEquatableValues<RoomDTO>, IEquatableValues<IRoom>, IRoom
     {
-        /// <summary>Приватное поля для хранения значения свойства</summary>
+        /// <summary>Приватное поле для хранения значения свойства</summary>
         private int _dormitoryID;
 
         public int DormitoryID { get => _dormitoryID; set => SetProperty(ref _dormitoryID, value); }
 
-        /// <summary>Приватное поля для хранения значения свойства</summary>
+        /// <summary>Приватное поле для хранения значения свойства</summary>
         private int _number;
 
         public int Number { get => _number; set => SetProperty(ref _number, value); }
@@ -60,7 +60,7 @@ namespace StDorVMLibrary.VMClasses
             && other.DormitoryID == DormitoryID
             && other.Number == Number;
 
-        public bool EqualValues(RoomDTO other)
+        public override bool EqualValues(RoomDTO other)
             => other.ID == ID
             && other.DormitoryID == DormitoryID
             && other.Number == Number;

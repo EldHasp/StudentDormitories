@@ -9,6 +9,7 @@ namespace StDorModelLibrary
     /// <summary>Абстрактный базовый класс Модели</summary>
     public abstract class StDorModelBase : IStDorModel
     {
+
         public bool IsDisposable { get; protected set; } = true;
         public bool IsLoaded { get; protected set; } = false;
 

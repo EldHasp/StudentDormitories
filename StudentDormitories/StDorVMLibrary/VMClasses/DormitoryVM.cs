@@ -8,12 +8,12 @@ namespace StDorVMLibrary.VMClasses
     public class DormitoryVM : BaseIdVM<DormitoryDTO>, ICopy<IDormitory>, IDormitory, IEquatableValues<IDormitory>, IEquatableValues<DormitoryDTO>
     {
 
-        /// <summary>Приватное поля для хранения значения свойства</summary>
+        /// <summary>Приватное поле для хранения значения свойства</summary>
         private string _title;
 
         public string Title { get => _title; set => SetProperty(ref _title, value); }
 
-        /// <summary>Приватное поля для хранения значения свойства</summary>
+        /// <summary>Приватное поле для хранения значения свойства</summary>
         private string _address;
 
         public string Address { get => _address; set => SetProperty(ref _address, value); }
@@ -61,9 +61,10 @@ namespace StDorVMLibrary.VMClasses
             && other.Title == Title
             && other.Address == Address;
 
-        public bool EqualValues(DormitoryDTO other)
+        public override bool EqualValues(DormitoryDTO other)
             => other.ID == ID
             && other.Title == Title
             && other.Address == Address;
+
     }
 }
