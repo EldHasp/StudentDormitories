@@ -55,7 +55,7 @@ namespace StDorVMLibrary
         }
 
         public RelayCommand DormitoryRemoveCommand => _dormitoryRemoveCommand ?? (_dormitoryRemoveCommand =
-            new RelayCommandAction<DormitoryVM>(DormitoryRemoveMetod, _ => AllFalseIsMode));
+            new RelayCommandAction<DormitoryVM>(DormitoryRemoveMetod, _ => AllFalseIsMode && Rooms.Count == 0));
 
         /// <summary>Метод удаления Общежития</summary>
         /// <param name="dormitory">Удаляемое Общежитие</param>
